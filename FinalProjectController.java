@@ -13,7 +13,6 @@ import java.net.URL;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import java.util.ResourceBundle;
-import java.util.Date;
 import java.util.prefs.Preferences;
 import java.text.SimpleDateFormat;
 import javafx.application.Platform;
@@ -25,10 +24,12 @@ import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.IOException;
+import java.util.Random;
 
 public class FinalProjectController 
 {
-
+     private APIData aPIData;
+     
       //Button variable declarations
       @FXML
       private Button exit;
@@ -56,42 +57,42 @@ public class FinalProjectController
       @FXML 
       private HBox pointsPerGame;
       @FXML 
-      private TextField pointsPerGameText;
+      private Label pointsPerGameText;
       
       @FXML 
       private HBox reboundsPerGame;
       @FXML 
-      private TextField reboundsPerGameText;
+      private Label reboundsPerGameText;
       
       @FXML 
       private HBox assistsPerGame;
       @FXML 
-      private TextField assistsPerGameText;
+      private Label assistsPerGameText;
       
       @FXML 
       private HBox blocksPerGame;
       @FXML 
-      private TextField blocksPerGameText;
+      private Label blocksPerGameText;
       
       @FXML 
       private HBox stealsPerGame;
       @FXML 
-      private TextField stealsPerGameText;
+      private Label stealsPerGameText;
       
       @FXML 
       private HBox fieldGoalPercent;
       @FXML 
-      private TextField fieldGoalPercentText;
+      private Label fieldGoalPercentText;
       
       @FXML 
       private HBox threePointPercent;
       @FXML 
-      private TextField threePointPercentText;
+      private Label threePointPercentText;
       
       @FXML 
       private HBox freeThrowPercent;
       @FXML 
-      private TextField freeThrowPercentText;
+      private Label freeThrowPercentText;
       
       
       //Methods to control Buttons
@@ -100,9 +101,8 @@ public class FinalProjectController
       {
          System.exit(0);
       }
-      
-      
-   //-------------- Curry Stuff   
+         
+   //---------------- Repeated Methods, used for all players  
       
      private final HttpClient client = HttpClient.newHttpClient();
      
@@ -112,7 +112,7 @@ public class FinalProjectController
          
          try {
 
-        this.APIData = gson.fromJson(data, APIData.class);      
+        this.aPIData = gson.fromJson(data, APIData.class);      
       } catch (Exception e) {
          System.out.println("GSON Parsing Failed");
          return;
@@ -123,26 +123,42 @@ public class FinalProjectController
                            }
                         });   
       }
+   
+   public void updateUI() {
+    if (this.aPIData != null && this.aPIData.data != null && this.aPIData.data.length > 0) {
+        PlayerStats playerStats = this.aPIData.data[0];
+
+        double pointsPerGameValue = playerStats.pts;
+        pointsPerGameText.setText(String.valueOf(pointsPerGameValue));
+        
+        double reboundsPerGameValue = playerStats.reb;
+        reboundsPerGameText.setText(String.valueOf(reboundsPerGameValue));
+        
+        double assistsPerGameValue = playerStats.ast;
+        assistsPerGameText.setText(String.valueOf(assistsPerGameValue));
+        
+        double blocksPerGameValue = playerStats.blk;
+        blocksPerGameText.setText(String.valueOf(blocksPerGameValue));
+        
+        double stealsPerGameValue = playerStats.stl;
+        stealsPerGameText.setText(String.valueOf(stealsPerGameValue));
+        
+        double fieldGoalPercentValue = playerStats.fg_pct;
+        fieldGoalPercentText.setText(String.valueOf(fieldGoalPercentValue));
       
-      public void updateUI()
-      {
-     //if statement saying that API Data is not null
-         pointsPerGameText.setText("20"); 
-        /*
-         reboundsPerGameText.setText();
-         assistsPerGameText();
-         blocksPerGameText();
-         stealsPerGameText();
-         fieldGoalPercentText();
-         threePointPercentText();
-         freeThrowPercentText();
-        */
-              
-      }
-      
-      
+        double threePointPercentValue = playerStats.fg3_pct;
+        threePointPercentText.setText(String.valueOf(threePointPercentValue));
+        
+        double freeThrowPercentValue = playerStats.ft_pct;
+        freeThrowPercentText.setText(String.valueOf(freeThrowPercentValue));
+    
+    }
+}
+    
+      //---------------- Repeated Methods, used for all players ^^^^
+    
       @FXML
-      public void stephenCurryOperation (ActionEvent event)
+      public void stephenCurryOperation (ActionEvent event) //ID = 115
       {
        try
        {
@@ -154,53 +170,113 @@ public class FinalProjectController
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
-
-         
+ 
          } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
           }
-
       }   
-      
-      
-      
-      
-          
+            
       @FXML
-      public void jimmyButlerOperation (ActionEvent event)
+      public void jimmyButlerOperation (ActionEvent event) //ID = 79      
       {
+       try
+       {
+       HttpRequest request = HttpRequest.newBuilder()
+               .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=79"))
+               .GET()
+               .build();
+               
+               client.sendAsync(request, BodyHandlers.ofString())
+                 .thenApply(HttpResponse::body)
+                 .thenAccept(this::processStatsData);        
+ 
+         } catch(URISyntaxException e) 
+          { 
+            System.out.println("Sorry, we are experiencing a network issue right now.");
+          }
+      }  
       
+      @FXML
+      public void leBronJamesOperation (ActionEvent event) //ID = 237
+      {
+      try
+       {
+       HttpRequest request = HttpRequest.newBuilder()
+               .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=237"))
+               .GET()
+               .build();
+               
+               client.sendAsync(request, BodyHandlers.ofString())
+                 .thenApply(HttpResponse::body)
+                 .thenAccept(this::processStatsData);        
+ 
+         } catch(URISyntaxException e) 
+          { 
+            System.out.println("Sorry, we are experiencing a network issue right now.");
+          }      
       }
       
       @FXML
-      public void leBronJamesOperation (ActionEvent event)
+      public void joelEmbiidOperation (ActionEvent event) //ID = 145
       {
-      
-      }
-      
-      @FXML
-      public void joelEmbiidOperation (ActionEvent event)
-      {
-      
+       try
+       {
+       HttpRequest request = HttpRequest.newBuilder()
+               .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=145"))
+               .GET()
+               .build();
+               
+               client.sendAsync(request, BodyHandlers.ofString())
+                 .thenApply(HttpResponse::body)
+                 .thenAccept(this::processStatsData);        
+ 
+         } catch(URISyntaxException e) 
+          { 
+            System.out.println("Sorry, we are experiencing a network issue right now.");
+          } 
       }
 
       @FXML
-      public void nikolaJokicOperation (ActionEvent event)
+      public void nikolaJokicOperation (ActionEvent event) //ID = 246
       {
-      
-      
-      
+       try
+       {
+       HttpRequest request = HttpRequest.newBuilder()
+               .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=246"))
+               .GET()
+               .build();
+               
+               client.sendAsync(request, BodyHandlers.ofString())
+                 .thenApply(HttpResponse::body)
+                 .thenAccept(this::processStatsData);        
+ 
+         } catch(URISyntaxException e) 
+          { 
+            System.out.println("Sorry, we are experiencing a network issue right now.");
+          }      
       }
 
       @FXML
       public void randomOperation (ActionEvent event)
       {
-      
-      }
-
-      
-     
-            }
-
-  
+        try
+       {
+       Random random = new Random();
+       
+       int randomCode = random.nextInt(101) + 100;
+       HttpRequest request = HttpRequest.newBuilder()
+               .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=" + randomCode))
+               .GET()
+               .build();
+               
+               client.sendAsync(request, BodyHandlers.ofString())
+                 .thenApply(HttpResponse::body)
+                 .thenAccept(this::processStatsData);        
+ 
+         } catch(URISyntaxException e) 
+          { 
+            System.out.println("Sorry, we are experiencing a network issue right now.");
+          } 
+      }     
+ }
