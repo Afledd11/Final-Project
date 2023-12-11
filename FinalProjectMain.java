@@ -1,5 +1,3 @@
-//Import statements all look good, they match the DemoMain file
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
@@ -28,10 +26,3 @@ public class FinalProjectMain extends Application
         stage.show(); 
    }
 }
-
-/* NOTES:
-   - Our fx ID's for the 8 hboxes that are going to hold each player's stats are named as if they were 
-   a Java variable. For example, the first hbox is named "pointsPerGame", so on and so forth. Also the 
-   numbers and percent signs are spelled out in full word form.
-   - Our six player hboxes fx ID's are just the player names, "stephCurry" and so on
- */  
