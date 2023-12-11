@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller = "FinalProjectController" >
+   <children>
+      <VBox layoutX="83.0" prefHeight="68.0" prefWidth="334.0">
+         <children>
+            <Label prefHeight="69.0" prefWidth="334.0" text="NBA STAT TRACKER" textFill="RED">
+               <font>
+                  <Font name="System Bold Italic" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutY="55.0" prefHeight="68.0" prefWidth="500.0">
+         <children>
+            <Label prefHeight="64.0" prefWidth="499.0" text="Take a Look at the Best Player from Each Position Around the League!" textAlignment="CENTER" textFill="#5100ff" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="250.0" endY="-1.0" startX="-249.99996948242188" startY="-1.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" layoutY="123.0" prefHeight="48.0" prefWidth="162.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="162.0" text="   Points Per Game: ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="294.0" layoutY="123.0" prefHeight="48.0" prefWidth="138.0">
+         <children>
+            <Label text="Steals Per Game:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="209.0" prefHeight="27.0" prefWidth="190.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="190.0" text="   Rebounds Per Game: ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="294.0" layoutY="209.0" prefHeight="27.0" prefWidth="112.0">
+         <children>
+            <Label text="Field Goal %: ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="294.0" layoutY="300.0" prefHeight="27.0" prefWidth="89.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="92.0" text="3 Point %:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="379.0" prefHeight="27.0" prefWidth="162.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="158.0" text="   Blocks Per Game:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="294.0" layoutY="379.0" prefHeight="27.0" prefWidth="118.0">
+         <children>
+            <Label text="Free Throw %:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Line endX="400.0000305175781" layoutX="100.0" layoutY="432.0" startX="-100.0" />
+      <Button fx:id="stephenCurry" layoutX="12.0" layoutY="441.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" text="Stephen Curry" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="jimmyButler" layoutX="170.0" layoutY="441.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" text="Jimmy Butler" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="lebronJames" layoutX="345.0" layoutY="441.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" text="LeBron James" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="joelEmbiid" layoutX="10.0" layoutY="514.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" text="Joel Embiid" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="nikolaJokic" layoutX="167.0" layoutY="513.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" text="Nikola Jokic" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="random" layoutX="342.0" layoutY="513.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" text="Random" textFill="#480bff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <HBox layoutY="300.0" prefHeight="27.0" prefWidth="164.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="162.0" text="   Assists Per Game:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="exit" layoutX="454.0" layoutY="14.0" mnemonicParsing="false" onAction = "#exitButtonOperation" text="Exit">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <HBox fx:id="pointsPerGame" layoutX="190.0" layoutY="130.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="reboundsPerGame" layoutX="190.0" layoutY="205.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="assistPerGame" layoutX="190.0" layoutY="296.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="blocksPerGame" layoutX="190.0" layoutY="375.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="stealsPerGame" layoutX="432.0" layoutY="130.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="fieldGoalPercent" layoutX="432.0" layoutY="205.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="threePointPercent" layoutX="432.0" layoutY="296.0" prefHeight="34.0" prefWidth="66.0" />
+      <HBox fx:id="freeThrowPercent" layoutX="432.0" layoutY="375.0" prefHeight="34.0" prefWidth="66.0" />
+   </children>
+</AnchorPane>
