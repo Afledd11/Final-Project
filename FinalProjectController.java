@@ -1,33 +1,20 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.application.Platform;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
-import java.text.SimpleDateFormat;
-import javafx.application.Platform;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.io.IOException;
 import java.util.Random;
 
 public class FinalProjectController 
 {
+     //Field declaration for API processing method below
      private APIData aPIData;
      
       //Button variable declarations
@@ -52,76 +39,51 @@ public class FinalProjectController
       @FXML 
       private Button random;
       
-     //Add FXML above textfield
-      //HBox and TextField declarations
-      @FXML 
-      private HBox pointsPerGame;
+      //Label declarations
       @FXML 
       private Label pointsPerGameText;
       
       @FXML 
-      private HBox reboundsPerGame;
-      @FXML 
       private Label reboundsPerGameText;
       
-      @FXML 
-      private HBox assistsPerGame;
       @FXML 
       private Label assistsPerGameText;
       
       @FXML 
-      private HBox blocksPerGame;
-      @FXML 
       private Label blocksPerGameText;
       
-      @FXML 
-      private HBox stealsPerGame;
       @FXML 
       private Label stealsPerGameText;
       
       @FXML 
-      private HBox fieldGoalPercent;
-      @FXML 
       private Label fieldGoalPercentText;
       
-      @FXML 
-      private HBox threePointPercent;
       @FXML 
       private Label threePointPercentText;
       
       @FXML 
-      private HBox freeThrowPercent;
-      @FXML 
       private Label freeThrowPercentText;
-      
-      
-      //Methods to control Buttons
-      @FXML
-      public void exitButtonOperation (ActionEvent event)
-      {
-         System.exit(0);
-      }
-         
-   //---------------- Repeated Methods, used for all players  
+                 
+   //Repeated Methods Below, used for all players  
       
      private final HttpClient client = HttpClient.newHttpClient();
      
       public void processStatsData(String data) 
       {
          Gson gson = new Gson();
-         
          try {
-
         this.aPIData = gson.fromJson(data, APIData.class);      
       } catch (Exception e) {
          System.out.println("GSON Parsing Failed");
          return;
       }  
-         Platform.runLater( new Runnable() {
-                           public void run() {
-                              updateUI();
-                           }
-                        });   
+         Platform.runLater( new Runnable()
+          {
+            public void run() 
+            {
+               updateUI();
+            }
+          });   
       }
    
    public void updateUI() {
@@ -143,19 +105,24 @@ public class FinalProjectController
         double stealsPerGameValue = playerStats.stl;
         stealsPerGameText.setText(String.valueOf(stealsPerGameValue));
         
-        double fieldGoalPercentValue = playerStats.fg_pct;
+        double fieldGoalPercentValue = playerStats.fg_pct * 100;
         fieldGoalPercentText.setText(String.valueOf(fieldGoalPercentValue));
       
-        double threePointPercentValue = playerStats.fg3_pct;
+        double threePointPercentValue = playerStats.fg3_pct * 100;
         threePointPercentText.setText(String.valueOf(threePointPercentValue));
         
-        double freeThrowPercentValue = playerStats.ft_pct;
+        double freeThrowPercentValue = playerStats.ft_pct * 100;
         freeThrowPercentText.setText(String.valueOf(freeThrowPercentValue));
-    
     }
-}
-    
-      //---------------- Repeated Methods, used for all players ^^^^
+}  
+      //Repeated Methods, used for all players ^^^^
+      
+      //Methods for control Buttons
+      @FXML
+      public void exitButtonOperation (ActionEvent event)
+      {
+         System.exit(0);
+      }
     
       @FXML
       public void stephenCurryOperation (ActionEvent event) //ID = 115
@@ -165,12 +132,10 @@ public class FinalProjectController
        HttpRequest request = HttpRequest.newBuilder()
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=115"))
                .GET()
-               .build();
-               
+               .build();  
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
          } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
@@ -186,11 +151,9 @@ public class FinalProjectController
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=79"))
                .GET()
                .build();
-               
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
          } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
@@ -205,13 +168,11 @@ public class FinalProjectController
        HttpRequest request = HttpRequest.newBuilder()
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=237"))
                .GET()
-               .build();
-               
+               .build(); 
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
-         } catch(URISyntaxException e) 
+        } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
           }      
@@ -225,13 +186,11 @@ public class FinalProjectController
        HttpRequest request = HttpRequest.newBuilder()
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=145"))
                .GET()
-               .build();
-               
+               .build();  
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
-         } catch(URISyntaxException e) 
+        } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
           } 
@@ -246,12 +205,10 @@ public class FinalProjectController
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=246"))
                .GET()
                .build();
-               
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
-         } catch(URISyntaxException e) 
+        } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
           }      
@@ -268,15 +225,13 @@ public class FinalProjectController
        HttpRequest request = HttpRequest.newBuilder()
                .uri(new URI("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=" + randomCode))
                .GET()
-               .build();
-               
+               .build();   
                client.sendAsync(request, BodyHandlers.ofString())
                  .thenApply(HttpResponse::body)
                  .thenAccept(this::processStatsData);        
- 
-         } catch(URISyntaxException e) 
+        } catch(URISyntaxException e) 
           { 
             System.out.println("Sorry, we are experiencing a network issue right now.");
           } 
-      }     
- }
+      }
+}
