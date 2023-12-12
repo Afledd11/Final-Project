@@ -106,13 +106,13 @@ public class FinalProjectController
         stealsPerGameText.setText(String.valueOf(stealsPerGameValue));
         
         double fieldGoalPercentValue = playerStats.fg_pct * 100;
-        fieldGoalPercentText.setText(String.valueOf(fieldGoalPercentValue));
+        fieldGoalPercentText.setText(String.format("%.1f", fieldGoalPercentValue));
       
         double threePointPercentValue = playerStats.fg3_pct * 100;
-        threePointPercentText.setText(String.valueOf(threePointPercentValue));
+        threePointPercentText.setText(String.format("%.1f", threePointPercentValue));
         
         double freeThrowPercentValue = playerStats.ft_pct * 100;
-        freeThrowPercentText.setText(String.valueOf(freeThrowPercentValue));
+        freeThrowPercentText.setText(String.format("%.1f", freeThrowPercentValue));
     }
 }  
       //Repeated Methods, used for all players ^^^^
